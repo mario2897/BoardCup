@@ -1,0 +1,168 @@
+[gd_scene load_steps=17 format=3 uid="uid://d1kwppdb5ruv6"]
+
+[ext_resource type="Script" uid="uid://cnus6g7y1gyeb" path="res://Scripts/MainMenu.gd" id="1_8saeu"]
+[ext_resource type="Theme" uid="uid://cq35nlv8gaq3v" path="res://Themes/Menu.tres" id="1_ghw46"]
+[ext_resource type="Texture2D" uid="uid://d4dfmemak1e3p" path="res://Images/TableTop.png" id="3_df05h"]
+[ext_resource type="Texture2D" uid="uid://d01pv06xp5cst" path="res://Images/BoardCupLogo.png" id="4_2x1g0"]
+[ext_resource type="Texture2D" uid="uid://bkvc6s30boxqj" path="res://Images/Icons/RPGModeNormal.png" id="5_loo7a"]
+[ext_resource type="Texture2D" uid="uid://bbqoeiemrg08b" path="res://Images/Icons/FantasyModeNormal.png" id="6_if7li"]
+[ext_resource type="Script" uid="uid://bjmjkwjhgots8" path="res://Scripts/FocusHoverButton.gd" id="6_rrcx7"]
+[ext_resource type="Texture2D" uid="uid://dfpoqnvdsclnu" path="res://Images/Icons/RPGModeFocus.png" id="7_2x1g0"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="7_cmrfp"]
+[ext_resource type="Texture2D" uid="uid://vlrybunh0qw4" path="res://Images/Icons/EditorNormal.png" id="7_rrcx7"]
+[ext_resource type="Texture2D" uid="uid://btddr8862uamt" path="res://Images/Icons/OptionsNormal.png" id="8_fh7cp"]
+[ext_resource type="Texture2D" uid="uid://dowi0jr88l3op" path="res://Images/Icons/ExitNormal.png" id="9_8e205"]
+[ext_resource type="Texture2D" uid="uid://dg231n17vav7p" path="res://Images/Icons/FantasyModeFocus.png" id="9_riqfo"]
+[ext_resource type="Texture2D" uid="uid://bm2r0rg773mcn" path="res://Images/Icons/EditorFocus.png" id="11_yxkem"]
+[ext_resource type="Texture2D" uid="uid://to7qg5dh47rh" path="res://Images/Icons/OptionsFocus.png" id="13_7v4os"]
+[ext_resource type="Texture2D" uid="uid://gi2elmklfsbf" path="res://Images/Icons/EXITFocus.png" id="15_pjscj"]
+
+[node name="MainMenù" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ghw46")
+script = ExtResource("1_8saeu")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_df05h")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GameLogo" type="TextureRect" parent="Background"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -235.0
+offset_top = 18.0
+offset_right = 265.0
+offset_bottom = 518.0
+grow_horizontal = 2
+texture = ExtResource("4_2x1g0")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Background"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -520.0
+offset_top = -580.0
+offset_right = 520.0
+offset_bottom = -250.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="GDRMode" type="Button" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(200, 330)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("5_loo7a")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_rrcx7")
+icona_normale = ExtResource("5_loo7a")
+icona_focus = ExtResource("7_2x1g0")
+
+[node name="FantasyMode" type="Button" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(200, 330)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("6_if7li")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_rrcx7")
+icona_normale = ExtResource("6_if7li")
+icona_focus = ExtResource("9_riqfo")
+
+[node name="Editor" type="Button" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(200, 330)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("7_rrcx7")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_rrcx7")
+icona_normale = ExtResource("7_rrcx7")
+icona_focus = ExtResource("11_yxkem")
+
+[node name="Options" type="Button" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(200, 330)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 25
+icon = ExtResource("8_fh7cp")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_rrcx7")
+icona_normale = ExtResource("8_fh7cp")
+icona_focus = ExtResource("13_7v4os")
+
+[node name="Quit" type="Button" parent="Background/VBoxContainer"]
+custom_minimum_size = Vector2(200, 330)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "
+"
+icon = ExtResource("9_8e205")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_rrcx7")
+icona_normale = ExtResource("9_8e205")
+icona_focus = ExtResource("15_pjscj")
+
+[node name="Descrizione" type="Label" parent="Background"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_cmrfp")
+theme_override_font_sizes/font_size = 25
+text = "Descrizione Modalità"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="focus_entered" from="Background/VBoxContainer/GDRMode" to="." method="_on_button_GDRMode_focus_entered"]
+[connection signal="pressed" from="Background/VBoxContainer/GDRMode" to="." method="_on_button_GDRMode_pressed"]
+[connection signal="focus_entered" from="Background/VBoxContainer/FantasyMode" to="." method="_on_button_FantasyMode_focus_entered"]
+[connection signal="pressed" from="Background/VBoxContainer/FantasyMode" to="." method="_on_button_FantasyMode_pressed"]
+[connection signal="focus_entered" from="Background/VBoxContainer/Editor" to="." method="_on_button_Editor_focus_entered"]
+[connection signal="pressed" from="Background/VBoxContainer/Editor" to="." method="_on_button_Editor_pressed"]
+[connection signal="focus_entered" from="Background/VBoxContainer/Options" to="." method="_on_button_Options_focus_entered"]
+[connection signal="pressed" from="Background/VBoxContainer/Options" to="." method="_on_button_Options_pressed"]
+[connection signal="focus_entered" from="Background/VBoxContainer/Quit" to="." method="_on_button_Quit_focus_entered"]
+[connection signal="pressed" from="Background/VBoxContainer/Quit" to="." method="_on_button_Quit_pressed"]

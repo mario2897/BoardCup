@@ -1,0 +1,115 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2ofa4jrp1c0b"]
+
+[ext_resource type="Script" uid="uid://dy3legcg4t4xh" path="res://Scripts/ActivePlayerCard.gd" id="1_o5ftb"]
+[ext_resource type="Texture2D" uid="uid://cismsgexr0b8t" path="res://Images/Kits/Fantasy/RBEAway.png" id="1_vyp72"]
+[ext_resource type="PackedScene" uid="uid://da8sga6f6d1vv" path="res://Scenes/Prefabs/PlayerButtonList.tscn" id="2_vyp72"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cweor"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5ftb"]
+bg_color = Color(1, 1, 1, 1)
+border_width_top = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bn7lx"]
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3fka"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="ActivePlayerCard" type="Control"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 300.0
+offset_bottom = 300.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_o5ftb")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cweor")
+
+[node name="CardLayout" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(290, 290)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -145.0
+offset_right = 145.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="PlayerRating" type="TextureRect" parent="CardLayout"]
+custom_minimum_size = Vector2(290, 50)
+layout_mode = 2
+
+[node name="TeamKit" type="TextureRect" parent="CardLayout"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_vyp72")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="PlayerButtonList" parent="CardLayout" instance=ExtResource("2_vyp72")]
+custom_minimum_size = Vector2(290, 30)
+layout_mode = 2
+toggle_mode = false
+action_mode = 1
+
+[node name="PlayerStats" type="PanelContainer" parent="CardLayout"]
+custom_minimum_size = Vector2(290, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5ftb")
+
+[node name="VotesLayout" type="HSplitContainer" parent="CardLayout/PlayerStats"]
+layout_mode = 2
+collapsed = true
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Vote" type="Label" parent="CardLayout/PlayerStats/VotesLayout"]
+custom_minimum_size = Vector2(145, 55)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_bn7lx")
+text = "Prestazione
+%d"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bonus_Malus" type="Label" parent="CardLayout/PlayerStats/VotesLayout"]
+custom_minimum_size = Vector2(145, 55)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_m3fka")
+text = "Bonus/Malus
+%d"
+horizontal_alignment = 1
+vertical_alignment = 1

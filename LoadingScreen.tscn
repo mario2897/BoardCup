@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://caen7wd1hg2cu"]
+
+[ext_resource type="Script" uid="uid://w0qivtqbjrhg" path="res://Scripts/LoadingScreen.gd" id="1_kddo8"]
+[ext_resource type="FontFile" uid="uid://dqg30epk18kc2" path="res://Fonts/Montserrat-Medium.ttf" id="2_xoop3"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kddo8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -430.0
+offset_top = -80.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_xoop3")
+theme_override_font_sizes/font_size = 30
+text = "CARICAMENTO IN CORSO..."
+horizontal_alignment = 1
+vertical_alignment = 1

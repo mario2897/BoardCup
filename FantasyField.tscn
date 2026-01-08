@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsneocu75f3i2"]
+
+[ext_resource type="Script" uid="uid://d3ythub5p1q8x" path="res://Scripts/FantasyField.gd" id="1_pft15"]
+[ext_resource type="Texture2D" uid="uid://be576f75h0xji" path="res://Images/Field.png" id="1_t4npw"]
+[ext_resource type="PackedScene" uid="uid://dvjrkt2x0m6ys" path="res://Scenes/Prefabs/PlayerDot.tscn" id="2_a06g4"]
+
+[node name="FantasyField" type="Control"]
+custom_minimum_size = Vector2(600, 900)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 900.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_pft15")
+player_dot_scene = ExtResource("2_a06g4")
+
+[node name="Pitch" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_t4npw")
+expand_mode = 5
+stretch_mode = 6
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Pitch"]
+custom_minimum_size = Vector2(580, 860)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.0
+offset_top = -438.0
+offset_right = 290.0
+offset_bottom = 439.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HomeTeam" type="VBoxContainer" parent="Pitch/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="GoalKeeper" type="HBoxContainer" parent="Pitch/VSplitContainer/HomeTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Defenders" type="HBoxContainer" parent="Pitch/VSplitContainer/HomeTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Midfielders" type="HBoxContainer" parent="Pitch/VSplitContainer/HomeTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Strikers" type="HBoxContainer" parent="Pitch/VSplitContainer/HomeTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="AwayTeam" type="VBoxContainer" parent="Pitch/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Strikers" type="HBoxContainer" parent="Pitch/VSplitContainer/AwayTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Midfielders" type="HBoxContainer" parent="Pitch/VSplitContainer/AwayTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Defenders" type="HBoxContainer" parent="Pitch/VSplitContainer/AwayTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="GoalKeeper" type="HBoxContainer" parent="Pitch/VSplitContainer/AwayTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1

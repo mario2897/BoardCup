@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=3 uid="uid://cok8xkx4bbc5b"]
+
+[ext_resource type="Theme" uid="uid://ea1i2v0ysium" path="res://Themes/TeamSelectionPanel.tres" id="1_5x6u5"]
+[ext_resource type="Script" uid="uid://bgijpd1b638gd" path="res://Scripts/TeamSelectionPanel.gd" id="1_ui7mo"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="3_ui7mo"]
+
+[node name="TeamSelectionPanel" type="VBoxContainer"]
+custom_minimum_size = Vector2(750, 950)
+offset_right = 750.0
+offset_bottom = 800.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_5x6u5")
+theme_override_constants/separation = 0
+script = ExtResource("1_ui7mo")
+
+[node name="SelectedTeam" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LogoHome" type="TextureRect" parent="SelectedTeam"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="SelectedTeam"]
+custom_minimum_size = Vector2(450, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ui7mo")
+theme_override_font_sizes/font_size = 25
+text = "Selected Team"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LogoAway" type="TextureRect" parent="SelectedTeam"]
+texture_filter = 6
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="LeagueScroll" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(700, 150)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="LeagueGrid" type="GridContainer" parent="LeagueScroll"]
+custom_minimum_size = Vector2(750, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="League" type="Button" parent="LeagueScroll/LeagueGrid"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+icon_alignment = 1
+expand_icon = true
+
+[node name="Logo" type="TextureRect" parent="LeagueScroll/LeagueGrid/League"]
+texture_filter = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TeamScroll" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(700, 600)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="TeamsGrid" type="GridContainer" parent="TeamScroll"]
+custom_minimum_size = Vector2(750, 600)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="Team" type="Button" parent="TeamScroll/TeamsGrid"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+icon_alignment = 1
+expand_icon = true
+
+[node name="Logo" type="TextureRect" parent="TeamScroll/TeamsGrid/Team"]
+texture_filter = 4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5

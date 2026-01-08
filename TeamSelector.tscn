@@ -1,0 +1,162 @@
+[gd_scene load_steps=9 format=3 uid="uid://bd0d1qnemvis4"]
+
+[ext_resource type="Theme" uid="uid://cq35nlv8gaq3v" path="res://Themes/Menu.tres" id="1_4rj61"]
+[ext_resource type="Texture2D" uid="uid://cn2dvo6b8rgj0" path="res://Images/FantasyFriendly.jpg" id="1_7aliv"]
+[ext_resource type="Script" uid="uid://dnuanpf0ki7ck" path="res://Scripts/TeamSelector.gd" id="2_urifj"]
+[ext_resource type="Script" uid="uid://dgxv0l3x601mo" path="res://Scripts/FocusBold.gd" id="3_urifj"]
+[ext_resource type="FontFile" uid="uid://dqg30epk18kc2" path="res://Fonts/Montserrat-Medium.ttf" id="5_ifins"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="6_p4bv6"]
+[ext_resource type="PackedScene" uid="uid://cok8xkx4bbc5b" path="res://Scenes/TeamSelectionPanel.tscn" id="7_p4bv6"]
+[ext_resource type="PackedScene" uid="uid://3y54d6lbf13u" path="res://Scenes/KitSelector.tscn" id="8_7cu7x"]
+
+[node name="TeamSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4rj61")
+script = ExtResource("2_urifj")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_7aliv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GameSelection" type="VBoxContainer" parent="Background"]
+custom_minimum_size = Vector2(350, 300)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 350.0
+theme_override_constants/separation = 0
+
+[node name="P1vCPU" type="Button" parent="Background/GameSelection"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Giocatore vs CPU"
+alignment = 0
+script = ExtResource("3_urifj")
+font_normale = ExtResource("5_ifins")
+font_grassetto = ExtResource("6_p4bv6")
+
+[node name="CPUvP1" type="Button" parent="Background/GameSelection"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "CPU vs Giocatore"
+alignment = 0
+script = ExtResource("3_urifj")
+font_normale = ExtResource("5_ifins")
+font_grassetto = ExtResource("6_p4bv6")
+
+[node name="P1vP2" type="Button" parent="Background/GameSelection"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+disabled = true
+text = "Giocatore 1 vs Giocatore 2"
+alignment = 0
+script = ExtResource("3_urifj")
+font_normale = ExtResource("5_ifins")
+font_grassetto = ExtResource("6_p4bv6")
+
+[node name="P2vP1" type="Button" parent="Background/GameSelection"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+disabled = true
+text = "Giocatore 2 vs Giocatore 1"
+alignment = 0
+script = ExtResource("3_urifj")
+font_normale = ExtResource("5_ifins")
+font_grassetto = ExtResource("6_p4bv6")
+
+[node name="Watch" type="Button" parent="Background/GameSelection"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "CPU vs CPU"
+alignment = 0
+script = ExtResource("3_urifj")
+font_normale = ExtResource("5_ifins")
+font_grassetto = ExtResource("6_p4bv6")
+
+[node name="Back" type="Button" parent="Background/GameSelection"]
+custom_minimum_size = Vector2(350, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Indietro"
+alignment = 0
+script = ExtResource("3_urifj")
+font_normale = ExtResource("5_ifins")
+font_grassetto = ExtResource("6_p4bv6")
+
+[node name="SelectionLayout" type="VBoxContainer" parent="Background"]
+custom_minimum_size = Vector2(1500, 950)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -400.0
+offset_right = 800.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TeamsScene" type="GridContainer" parent="Background/SelectionLayout"]
+custom_minimum_size = Vector2(1500, 950)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="HomeTeamPanel" parent="Background/SelectionLayout/TeamsScene" instance=ExtResource("7_p4bv6")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="Background/SelectionLayout/TeamsScene"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="AwayTeamPanel" parent="Background/SelectionLayout/TeamsScene" instance=ExtResource("7_p4bv6")]
+layout_mode = 2
+size_flags_horizontal = 3
+is_home_team = false
+
+[node name="KitSelector" parent="Background/SelectionLayout" instance=ExtResource("8_7cu7x")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[connection signal="pressed" from="Background/GameSelection/P1vCPU" to="." method="_on_button_pressed" binds= ["P1_CPU"]]
+[connection signal="pressed" from="Background/GameSelection/CPUvP1" to="." method="_on_button_pressed" binds= ["CPU_P1"]]
+[connection signal="pressed" from="Background/GameSelection/P1vP2" to="." method="_on_button_pressed" binds= ["P1_P2"]]
+[connection signal="pressed" from="Background/GameSelection/P2vP1" to="." method="_on_button_pressed" binds= ["P2_P1"]]
+[connection signal="pressed" from="Background/GameSelection/Watch" to="." method="_on_button_pressed" binds= ["CPU_CPU"]]
+[connection signal="pressed" from="Background/GameSelection/Back" to="." method="_on_Back_pressed"]

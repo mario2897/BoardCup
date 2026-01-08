@@ -1,0 +1,128 @@
+[gd_scene load_steps=4 format=3 uid="uid://3y54d6lbf13u"]
+
+[ext_resource type="Script" uid="uid://baenru84c1ukt" path="res://Scripts/KitSelector.gd" id="1_81pxi"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="1_ivauq"]
+[ext_resource type="Theme" uid="uid://d1w8k1psw7uwj" path="res://Themes/KitSelector.tres" id="2_81pxi"]
+
+[node name="KitSelector" type="VBoxContainer"]
+custom_minimum_size = Vector2(1500, 900)
+offset_right = 1500.0
+offset_bottom = 900.0
+theme_override_constants/separation = 0
+script = ExtResource("1_81pxi")
+
+[node name="Teams" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="HomeColor" type="ColorRect" parent="Teams"]
+custom_minimum_size = Vector2(750, 150)
+layout_mode = 2
+color = Color(0, 0.17065725, 0.99999934, 0.3137255)
+
+[node name="HomeTeam" type="HBoxContainer" parent="Teams/HomeColor"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 0
+offset_right = 754.0
+offset_bottom = 150.0
+theme_override_constants/separation = 0
+
+[node name="Name" type="Label" parent="Teams/HomeColor/HomeTeam"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ivauq")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="Teams/HomeColor/HomeTeam"]
+texture_filter = 6
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AwayColor" type="ColorRect" parent="Teams"]
+custom_minimum_size = Vector2(750, 0)
+layout_mode = 2
+color = Color(1, 0, 0, 0.19607843)
+
+[node name="AwayTeam" type="HBoxContainer" parent="Teams/AwayColor"]
+custom_minimum_size = Vector2(750, 150)
+layout_mode = 0
+offset_right = 754.0
+offset_bottom = 150.0
+theme_override_constants/separation = 0
+
+[node name="Logo" type="TextureRect" parent="Teams/AwayColor/AwayTeam"]
+texture_filter = 6
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Teams/AwayColor/AwayTeam"]
+custom_minimum_size = Vector2(600, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_ivauq")
+theme_override_font_sizes/font_size = 25
+vertical_alignment = 1
+
+[node name="WhiteBar" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1500, 10)
+layout_mode = 2
+
+[node name="KitPreviews" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 0
+
+[node name="HomeKit" type="TextureRect" parent="KitPreviews"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AwayKit" type="TextureRect" parent="KitPreviews"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ChooseKitLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_ivauq")
+theme_override_font_sizes/font_size = 25
+text = "Seleziona le divise per la partita"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsLayout" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_81pxi")
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Button1" type="Button" parent="ButtonsLayout"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="ButtonsLayout"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="ButtonsLayout"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="ButtonsLayout"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2

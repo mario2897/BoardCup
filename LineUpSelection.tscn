@@ -1,0 +1,172 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1nktgww2ncpu"]
+
+[ext_resource type="Texture2D" uid="uid://cn2dvo6b8rgj0" path="res://Images/FantasyFriendly.jpg" id="1_58dhe"]
+[ext_resource type="Script" uid="uid://drclcc6em84wf" path="res://Scripts/LineUpSelection.gd" id="1_d30ac"]
+[ext_resource type="Theme" uid="uid://qe473c43cl6y" path="res://Themes/HomeTeamLineup.tres" id="2_2s4mt"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="3_2s4mt"]
+[ext_resource type="Theme" uid="uid://25b6irhdv111" path="res://Themes/AwayTeamLineup.tres" id="3_d30ac"]
+
+[node name="LineUpSelection" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d30ac")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_58dhe")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="BackgroundAlphaLayer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="Columns" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1600, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = -450.0
+offset_right = 810.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HomeTeamLineup" type="PanelContainer" parent="Columns"]
+custom_minimum_size = Vector2(600, 900)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_2s4mt")
+
+[node name="HomeTeam" type="VBoxContainer" parent="Columns/HomeTeamLineup"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HomeTeamSelected" type="HBoxContainer" parent="Columns/HomeTeamLineup/HomeTeam"]
+layout_mode = 2
+
+[node name="TeamName" type="Label" parent="Columns/HomeTeamLineup/HomeTeam/HomeTeamSelected"]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2s4mt")
+theme_override_font_sizes/font_size = 25
+text = " TeamName "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TeamLogo" type="TextureRect" parent="Columns/HomeTeamLineup/HomeTeam/HomeTeamSelected"]
+texture_filter = 4
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Modulo" type="TextureRect" parent="Columns/HomeTeamLineup/HomeTeam"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 6
+
+[node name="PlayersHome" type="HBoxContainer" parent="Columns/HomeTeamLineup/HomeTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Starters" type="VBoxContainer" parent="Columns/HomeTeamLineup/HomeTeam/PlayersHome"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MenuButton" type="MenuButton" parent="Columns/HomeTeamLineup/HomeTeam/PlayersHome/Starters"]
+layout_mode = 2
+text = "PlayerName"
+flat = false
+
+[node name="Bench" type="VBoxContainer" parent="Columns/HomeTeamLineup/HomeTeam/PlayersHome"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MatchOptions" type="VBoxContainer" parent="Columns"]
+custom_minimum_size = Vector2(480, 900)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="StartMatchButton" type="Button" parent="Columns/MatchOptions"]
+layout_mode = 2
+text = "Inizia la Partita"
+
+[node name="AwayTeamLineup" type="PanelContainer" parent="Columns"]
+custom_minimum_size = Vector2(600, 900)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_d30ac")
+
+[node name="AwayTeam" type="VBoxContainer" parent="Columns/AwayTeamLineup"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AwayTeamSelected" type="HBoxContainer" parent="Columns/AwayTeamLineup/AwayTeam"]
+layout_mode = 2
+
+[node name="TeamLogo" type="TextureRect" parent="Columns/AwayTeamLineup/AwayTeam/AwayTeamSelected"]
+texture_filter = 4
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TeamName" type="Label" parent="Columns/AwayTeamLineup/AwayTeam/AwayTeamSelected"]
+custom_minimum_size = Vector2(500, 75)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_2s4mt")
+theme_override_font_sizes/font_size = 25
+text = " TeamName "
+vertical_alignment = 1
+
+[node name="Modulo" type="TextureRect" parent="Columns/AwayTeamLineup/AwayTeam"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+flip_h = true
+
+[node name="PlayersAway" type="HBoxContainer" parent="Columns/AwayTeamLineup/AwayTeam"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Starters" type="VBoxContainer" parent="Columns/AwayTeamLineup/AwayTeam/PlayersAway"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Bench" type="VBoxContainer" parent="Columns/AwayTeamLineup/AwayTeam/PlayersAway"]
+custom_minimum_size = Vector2(300, 400)
+layout_mode = 2
+theme_override_constants/separation = 0

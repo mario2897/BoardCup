@@ -1,0 +1,194 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7kkw5dfwuxdj"]
+
+[ext_resource type="Script" uid="uid://bou8g3yvjunm1" path="res://Scripts/StartersSelections.gd" id="1_m7vrr"]
+[ext_resource type="Texture2D" uid="uid://cn2dvo6b8rgj0" path="res://Images/FantasyFriendly.jpg" id="2_t7bol"]
+[ext_resource type="Theme" uid="uid://cu03n41hjr02b" path="res://Themes/StartersSelection.tres" id="3_k4njj"]
+[ext_resource type="Texture2D" uid="uid://bqglujvj2b2do" path="res://Images/Starters.jpg" id="3_t7bol"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="5_rpq1i"]
+
+[node name="StartersSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m7vrr")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_t7bol")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="GridContainer" type="GridContainer" parent="."]
+custom_minimum_size = Vector2(1175, 900)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -618.5
+offset_top = -440.0
+offset_right = 556.5
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="LeagueGames" type="VBoxContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(220, 900)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 0
+
+[node name="MatchContainer" type="HBoxContainer" parent="GridContainer/LeagueGames"]
+custom_minimum_size = Vector2(220, 50)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LogoHome" type="TextureRect" parent="GridContainer/LeagueGames/MatchContainer"]
+texture_filter = 6
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="NameHome" type="Label" parent="GridContainer/LeagueGames/MatchContainer"]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rpq1i")
+text = "ABC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameAway" type="Label" parent="GridContainer/LeagueGames/MatchContainer"]
+custom_minimum_size = Vector2(60, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rpq1i")
+text = "ABC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LogoAway" type="TextureRect" parent="GridContainer/LeagueGames/MatchContainer"]
+texture_filter = 6
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Divider" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="SelectionContainer" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_k4njj")
+theme_override_constants/separation = 5
+
+[node name="Pitch" type="TextureRect" parent="GridContainer/SelectionContainer"]
+custom_minimum_size = Vector2(600, 900)
+layout_mode = 2
+texture = ExtResource("3_t7bol")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Roles" type="VBoxContainer" parent="GridContainer/SelectionContainer/Pitch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Strikers" type="HBoxContainer" parent="GridContainer/SelectionContainer/Pitch/Roles"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Midfielders" type="HBoxContainer" parent="GridContainer/SelectionContainer/Pitch/Roles"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Defenders" type="HBoxContainer" parent="GridContainer/SelectionContainer/Pitch/Roles"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="GoalKeepers" type="HBoxContainer" parent="GridContainer/SelectionContainer/Pitch/Roles"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="PlayerList" type="ScrollContainer" parent="GridContainer/SelectionContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
+
+[node name="BenchList" type="VBoxContainer" parent="GridContainer/SelectionContainer/PlayerList"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Team" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="Name" type="Label" parent="Team"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rpq1i")
+theme_override_font_sizes/font_size = 25
+text = "TeamName"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="Team"]
+texture_filter = 6
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="PlayMatch" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -60.0
+offset_right = 64.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Inizia la partita"
+
+[connection signal="pressed" from="PlayMatch" to="." method="_on_PlayMatch_pressed"]

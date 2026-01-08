@@ -1,0 +1,146 @@
+[gd_scene load_steps=8 format=3 uid="uid://b1ry54gf24nj0"]
+
+[ext_resource type="Theme" uid="uid://cq35nlv8gaq3v" path="res://Themes/Menu.tres" id="1_5paop"]
+[ext_resource type="Texture2D" uid="uid://cn2dvo6b8rgj0" path="res://Images/FantasyFriendly.jpg" id="1_okvdk"]
+[ext_resource type="Script" uid="uid://bqb71yky5pvue" path="res://Scripts/MenuFantasy.gd" id="2_duoxo"]
+[ext_resource type="Texture2D" uid="uid://bggwcnewfo4xw" path="res://Images/Fantasy Mode.png" id="4_emkth"]
+[ext_resource type="Script" uid="uid://dgxv0l3x601mo" path="res://Scripts/FocusBold.gd" id="4_xcgmv"]
+[ext_resource type="FontFile" uid="uid://dqg30epk18kc2" path="res://Fonts/Montserrat-Medium.ttf" id="5_qetqh"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="6_emkth"]
+
+[node name="FantasyMode" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5paop")
+script = ExtResource("2_duoxo")
+
+[node name="Sfondo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_okvdk")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HeaderMenù" type="Label" parent="Sfondo"]
+texture_filter = 6
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -282.0
+offset_right = 282.0
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Modalità FANTACALCIO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -540.0
+offset_right = 400.0
+offset_bottom = 540.0
+grow_vertical = 2
+theme = ExtResource("1_5paop")
+theme_override_constants/separation = 0
+
+[node name="LogoFantasyMode" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 6
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("4_emkth")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Friendly" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Amichevole"
+alignment = 0
+script = ExtResource("4_xcgmv")
+font_normale = ExtResource("5_qetqh")
+font_grassetto = ExtResource("6_emkth")
+
+[node name="Continue" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Continua"
+alignment = 0
+script = ExtResource("4_xcgmv")
+font_normale = ExtResource("5_qetqh")
+font_grassetto = ExtResource("6_emkth")
+
+[node name="NewLeague" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Nuova Lega"
+alignment = 0
+script = ExtResource("4_xcgmv")
+font_normale = ExtResource("5_qetqh")
+font_grassetto = ExtResource("6_emkth")
+
+[node name="LoadLeague" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Carica Lega"
+alignment = 0
+script = ExtResource("4_xcgmv")
+font_normale = ExtResource("5_qetqh")
+font_grassetto = ExtResource("6_emkth")
+
+[node name="Import" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Importa Lega"
+alignment = 0
+script = ExtResource("4_xcgmv")
+font_normale = ExtResource("5_qetqh")
+font_grassetto = ExtResource("6_emkth")
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Indietro"
+alignment = 0
+script = ExtResource("4_xcgmv")
+font_normale = ExtResource("5_qetqh")
+font_grassetto = ExtResource("6_emkth")
+
+[connection signal="pressed" from="VBoxContainer/Friendly" to="." method="_on_button_Friendly_pressed"]
+[connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_button_Continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/NewLeague" to="." method="_on_button_NewLeague_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadLeague" to="." method="_on_button_LoadLeague_pressed"]
+[connection signal="pressed" from="VBoxContainer/Import" to="." method="_on_button_Import_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_button_Back_pressed"]

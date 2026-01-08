@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://p4lojpq2enxa"]
+
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="1_0bss8"]
+[ext_resource type="Script" uid="uid://cdm8dqwi34hst" path="res://Scripts/PlayerMatchNametag.gd" id="2_0bss8"]
+[ext_resource type="FontFile" uid="uid://cuq8gh0yo4t3c" path="res://Fonts/Montserrat-SemiBold.ttf" id="3_rvl7k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aom0h"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h28cs"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_l8glm"]
+default_font = ExtResource("1_0bss8")
+default_font_size = 20
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_aom0h")
+Button/styles/pressed = SubResource("StyleBoxFlat_h28cs")
+
+[node name="PlayerMatchNametag" type="Button"]
+custom_minimum_size = Vector2(300, 30)
+offset_right = 300.0
+offset_bottom = 30.0
+theme = SubResource("Theme_l8glm")
+script = ExtResource("2_0bss8")
+
+[node name="Divisor" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 30.0
+theme_override_constants/separation = 0
+
+[node name="PositionBG" type="ColorRect" parent="Divisor"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Position" type="Label" parent="Divisor/PositionBG"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 32.0
+text = "P"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerName" type="Label" parent="Divisor"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rvl7k")
+theme_override_font_sizes/font_size = 15
+text = " PlayerName"
+vertical_alignment = 1
+
+[node name="RatingBG" type="ColorRect" parent="Divisor"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+
+[node name="Rating" type="Label" parent="Divisor/RatingBG"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "---"
+horizontal_alignment = 1
+vertical_alignment = 1

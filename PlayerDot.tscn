@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvjrkt2x0m6ys"]
+
+[ext_resource type="Script" uid="uid://cv1j2tgoi25av" path="res://Scripts/PlayerDot.gd" id="1_8cxjf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8cxjf"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 20
+
+[node name="PlayerDot" type="VBoxContainer"]
+custom_minimum_size = Vector2(100, 80)
+offset_right = 60.0
+offset_bottom = 100.0
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 1
+script = ExtResource("1_8cxjf")
+
+[node name="DotIcon" type="Panel" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_8cxjf")
+
+[node name="PlayerName" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "PlayerName"
+horizontal_alignment = 1
+vertical_alignment = 1

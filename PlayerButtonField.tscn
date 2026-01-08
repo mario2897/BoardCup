@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1gki5vlc0td2"]
+
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="1_okbfw"]
+[ext_resource type="Script" uid="uid://c6conm33jmv15" path="res://Scripts/PlayerButtonField.gd" id="2_7o2l1"]
+[ext_resource type="Texture2D" uid="uid://dbhm8y3m6ady" path="res://Images/Kits/Fantasy/FoxHoundSGFHome.png" id="3_7o2l1"]
+[ext_resource type="FontFile" uid="uid://dqg30epk18kc2" path="res://Fonts/Montserrat-Medium.ttf" id="4_yiv36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axuaq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8glm"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aom0h"]
+bg_color = Color(1, 1, 1, 0.15686275)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h28cs"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_l8glm"]
+default_font = ExtResource("1_okbfw")
+default_font_size = 20
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_axuaq")
+Button/styles/hover = SubResource("StyleBoxFlat_l8glm")
+Button/styles/normal = SubResource("StyleBoxFlat_aom0h")
+Button/styles/pressed = SubResource("StyleBoxFlat_h28cs")
+
+[node name="PlayerButtonField" type="Button"]
+custom_minimum_size = Vector2(100, 130)
+offset_right = 100.0
+offset_bottom = 130.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_l8glm")
+toggle_mode = true
+action_mode = 0
+script = ExtResource("2_7o2l1")
+
+[node name="JerseyName" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 150.0
+theme_override_constants/separation = 0
+
+[node name="Jersey" type="TextureRect" parent="JerseyName"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_7o2l1")
+expand_mode = 5
+
+[node name="NameBG" type="ColorRect" parent="JerseyName"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="JerseyName/NameBG"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_yiv36")
+theme_override_font_sizes/font_size = 11
+text = "PlayerName"
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
