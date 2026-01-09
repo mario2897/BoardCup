@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3lxxt3gjg8je"]
+[gd_scene load_steps=7 format=3 uid="uid://d3lxxt3gjg8je"]
 
+[ext_resource type="Script" uid="uid://dkj18tcd3nipf" path="res://Scripts/MatchFantasy.gd" id="1_euyqn"]
 [ext_resource type="Texture2D" uid="uid://bn1opu07vjqt4" path="res://Images/FantasyMatchBG.jpg" id="1_v3kph"]
 [ext_resource type="PackedScene" uid="uid://bsneocu75f3i2" path="res://Scenes/Prefabs/FantasyField.tscn" id="2_v3kph"]
-[ext_resource type="PackedScene" uid="uid://b2ofa4jrp1c0b" path="res://Scenes/Prefabs/ActivePlayerCard.tscn" id="3_uhpfh"]
 [ext_resource type="Script" uid="uid://buy8vk5jv3tf2" path="res://Scripts/TurnManager.gd" id="4_grmx4"]
+[ext_resource type="FontFile" uid="uid://cuq8gh0yo4t3c" path="res://Fonts/Montserrat-SemiBold.ttf" id="4_t7yx2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ll6yr"]
+bg_color = Color(0, 0, 0, 1)
+corner_detail = 1
 
 [node name="MatchFantasy" type="Control"]
 layout_mode = 3
@@ -12,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_euyqn")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -39,16 +45,44 @@ alignment = 1
 [node name="HomeTeam" type="VBoxContainer" parent="PanelContainer/MatchLayout"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="ActivePlayerCard" parent="PanelContainer/MatchLayout/HomeTeam" instance=ExtResource("3_uhpfh")]
+[node name="Starters" type="Label" parent="PanelContainer/MatchLayout/HomeTeam"]
+custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_t7yx2")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ll6yr")
+text = "TITOLARI"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PlayerList" type="VBoxContainer" parent="PanelContainer/MatchLayout/HomeTeam"]
+[node name="StartersList" type="VBoxContainer" parent="PanelContainer/MatchLayout/HomeTeam"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Bench" type="Label" parent="PanelContainer/MatchLayout/HomeTeam"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_t7yx2")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ll6yr")
+text = "PANCHINARI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BenchList" type="VBoxContainer" parent="PanelContainer/MatchLayout/HomeTeam"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="MatchInfo" type="VBoxContainer" parent="PanelContainer/MatchLayout"]
 layout_mode = 2
@@ -66,18 +100,46 @@ size_flags_vertical = 4
 [node name="AwayTeam" type="VBoxContainer" parent="PanelContainer/MatchLayout"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="ActivePlayerCard" parent="PanelContainer/MatchLayout/AwayTeam" instance=ExtResource("3_uhpfh")]
+[node name="Starters" type="Label" parent="PanelContainer/MatchLayout/AwayTeam"]
+custom_minimum_size = Vector2(300, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_t7yx2")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ll6yr")
+text = "TITOLARI"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PlayerList" type="VBoxContainer" parent="PanelContainer/MatchLayout/AwayTeam"]
+[node name="StartersList" type="VBoxContainer" parent="PanelContainer/MatchLayout/AwayTeam"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Bench" type="Label" parent="PanelContainer/MatchLayout/AwayTeam"]
+custom_minimum_size = Vector2(300, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_t7yx2")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ll6yr")
+text = "PANCHINARI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BenchList" type="VBoxContainer" parent="PanelContainer/MatchLayout/AwayTeam"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("active_card_home", "active_card_away")]
 script = ExtResource("4_grmx4")
-active_card_home = NodePath("../PanelContainer/MatchLayout/HomeTeam/ActivePlayerCard")
-active_card_away = NodePath("../PanelContainer/MatchLayout/AwayTeam/ActivePlayerCard")
+active_card_home = NodePath("")
+active_card_away = NodePath("")
