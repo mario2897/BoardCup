@@ -3,14 +3,14 @@ extends Control
 
 # --- RIFERIMENTI AI NODI (Aggiornati alla tua scena reale) ---
 @onready var background_panel = $BackgroundPanel
-@onready var kit_texture = $CardLayout/TeamKit
+@onready var kit_texture = $BackgroundPanel/CardLayout/TeamKit
 
 # Invece di una Label semplice, hai un'istanza di PlayerButtonList
-@onready var player_info_display = $CardLayout/PlayerButtonList 
+@onready var player_info_display = $BackgroundPanel/CardLayout/DataLayout/NameRatingTag/PlayerMatchNametag 
 
 # I label sono direttamente qui, non c'è un nodo "Value" figlio
-@onready var vote_label = $CardLayout/PlayerStats/VotesLayout/Vote
-@onready var bonus_label = $CardLayout/PlayerStats/VotesLayout/Bonus_Malus
+@onready var vote_label = $BackgroundPanel/CardLayout/DataLayout/PlayerStats/VotesLayout/Vote
+@onready var bonus_label = $BackgroundPanel/CardLayout/DataLayout/PlayerStats/VotesLayout/Bonus_Malus
 
 func _ready():
 	reset_card()
@@ -20,7 +20,7 @@ func reset_card():
 	
 	# Reset Testi
 	if vote_label: vote_label.text = "Prestazione\n-"
-	if bonus_label: bonus_label.text = "Bonus/Malus\n-"
+	if bonus_label: bonus_label.text = "Difficoltà\n-"
 	
 	# Reset del componente nome (se ha un metodo di reset, altrimenti lo nascondiamo o puliamo)
 	if player_info_display and player_info_display.has_method("setup"):
@@ -39,7 +39,7 @@ func setup(player_data: Dictionary, kit_path: String, team_colors: Dictionary = 
 	if player_info_display:
 		if player_info_display.has_method("setup"):
 			# Usiamo il metodo setup del tuo prefab per mostrari i dati (Nome, Ruolo, ecc.)
-			player_info_display.setup(player_data)
+			player_info_display.setup(player_data, team_colors)
 			# Disabilitiamo l'interazione se serve solo per visualizzazione
 			if player_info_display is BaseButton:
 				player_info_display.disabled = true
@@ -52,15 +52,18 @@ func setup(player_data: Dictionary, kit_path: String, team_colors: Dictionary = 
 	if vote_label:
 		# Formatta il testo mantenendo la scritta "Prestazione" e andando a capo
 		vote_label.text = "Prestazione\n%.1f" % voto
+		vote_label.modulate = team_colors.get("secondary", Color.BLACK)
+		vote_label.add_theme_color_override("font_color", team_colors.get("primary"))
 		
 	if bonus_label:
 		var sign_str = "+" if bonus > 0 else ""
-		bonus_label.text = "Bonus/Malus\n%s%.1f" % [sign_str, bonus]
+		bonus_label.text = "Difficoltà\n%s%.1f" % [sign_str, bonus]
 		
 		# Colora il testo
 		if bonus > 0: bonus_label.modulate = Color.GREEN
 		elif bonus < 0: bonus_label.modulate = Color.RED
-		else: bonus_label.modulate = Color.WHITE
+		else: 
+			bonus_label.modulate = team_colors.get("secondary", Color.BLACK)
 
 	# 4. COLORA IL BORDO (Usa i colori del DB passati dal TurnManager)
 	if not team_colors.is_empty():
@@ -71,7 +74,8 @@ func setup(player_data: Dictionary, kit_path: String, team_colors: Dictionary = 
 		if style:
 			# Duplica lo stile per non cambiare tutte le carte insieme
 			style = style.duplicate()
-			style.border_color = primary # O secondary, a tua scelta
+			style.bg_color = primary
+			style.border_color = secondary # O secondary, a tua scelta
 			background_panel.add_theme_stylebox_override("panel", style)
 
 # Helper per mostrare la maglia anche quando inattivo

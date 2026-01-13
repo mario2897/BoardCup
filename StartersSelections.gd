@@ -13,7 +13,6 @@ const LIST_BTN_SCENE = preload("res://Scenes/Prefabs/PlayerButtonList.tscn")
 # Pannello Sinistro: Calendario
 @onready var league_games_list: VBoxContainer = $GridContainer/LeagueGames
 @onready var match_row_template: HBoxContainer = $GridContainer/LeagueGames/MatchContainer
-@onready var divider_template: ColorRect = $GridContainer/Divider
 
 # Pannello Destro: Campo da Gioco
 @onready var strikers_container: HBoxContainer = $GridContainer/SelectionContainer/Pitch/Roles/Strikers
@@ -42,7 +41,6 @@ func _ready():
 
 	# 2. Nascondi i template usati per clonazione
 	if match_row_template: match_row_template.visible = false
-	if divider_template: divider_template.visible = false
 	
 	# 3. Avvia il popolamento della UI
 	refresh_ui()
@@ -96,7 +94,7 @@ func populate_team_info():
 func populate_league_fixtures():
 	# Pulisci lista visiva precedente
 	for child in league_games_list.get_children():
-		if child != match_row_template and child != divider_template:
+		if child != match_row_template:
 			child.queue_free()
 	
 	# --- LOGICA GENERAZIONE ---
@@ -125,15 +123,11 @@ func populate_league_fixtures():
 		
 		var h_logo = match_data.get("Home_Logo", "")
 		var a_logo = match_data.get("Away_Logo", "")
-		if FileAccess.file_exists(h_logo): row.get_node("LogoHome").texture = load(h_logo)
-		if FileAccess.file_exists(a_logo): row.get_node("LogoAway").texture = load(a_logo)
+		if FileAccess.file_exists(h_logo): row.get_node("HomeTeamLogo/LogoHome").texture = load(h_logo)
+		if FileAccess.file_exists(a_logo): row.get_node("AwayTeamLogo/LogoAway").texture = load(a_logo)
 		
 		row.visible = true
 		league_games_list.add_child(row)
-		
-		var div = divider_template.duplicate()
-		div.visible = true
-		league_games_list.add_child(div)
 
 # ==============================================================================
 # 5. ROSTER (Titolari e Panchina)

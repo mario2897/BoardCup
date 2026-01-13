@@ -8,7 +8,6 @@ class_name PlayerMatchNametag
 @onready var bg_rating = $Divisor/RatingBG
 
 var _base_style: StyleBoxFlat
-var _active_highlight: bool = false
 
 func _ready():
 	focus_mode = Control.FOCUS_NONE 
@@ -56,20 +55,7 @@ func setup(player_data: Dictionary, team_colors: Dictionary):
 func update_score(val: String):
 	label_score.text = val
 
-func set_highlight(active: bool):
-	_active_highlight = active
-	if _base_style:
-		if active:
-			# Bordo Giallo/Oro acceso per il turno
-			_base_style.border_width_top = 2
-			_base_style.border_width_bottom = 2
-			_base_style.border_width_left = 2
-			_base_style.border_width_right = 2
-			_base_style.border_color = Color(1, 0.9, 0.2) 
-		else:
-			# Reset bordo normale
-			_base_style.border_width_top = 0
-			_base_style.border_width_bottom = 1
-			_base_style.border_width_left = 0
-			_base_style.border_width_right = 0
-			_base_style.border_color = _base_style.bg_color.darkened(0.2)
+# --- FUNZIONE AGGIUNTA PER RISOLVERE IL CRASH ---
+func show_vote_result(vote: float):
+	# Converte il float (es. 6.5) in stringa "6.5" e aggiorna la label
+	update_score("%.1f" % vote)

@@ -1,10 +1,10 @@
-class_name FantasyFieldManager
+class_name FantasyField
 extends Control
 
 # LA SCENA PREFAB (Trascina qui "PlayerDot.tscn")
 @export var player_dot_scene: PackedScene 
 
-# --- RIFERIMENTI AI CONTAINER (Come da tuo script originale) ---
+# --- RIFERIMENTI AI CONTAINER ---
 @onready var home_gk = $Pitch/VSplitContainer/HomeTeam/GoalKeeper
 @onready var home_def = $Pitch/VSplitContainer/HomeTeam/Defenders
 @onready var home_mid = $Pitch/VSplitContainer/HomeTeam/Midfielders
@@ -48,13 +48,17 @@ func setup_field(home_id: int, away_id: int, h_kit: String, a_kit: String):
 	var home_roster = DataManager.get_match_roster_starters(home_id)
 	var away_roster = DataManager.get_match_roster_starters(away_id)
 	
-	# 2. RECUPERA COLORI AVANZATI (Primario/Secondario) DAL DB
-	# true = Kit Casa, false = Kit Trasferta
-	var cols_home = DataManager.get_team_colors_full(home_id, true, h_kit)
-	var cols_away = DataManager.get_team_colors_full(away_id, false, a_kit)
+	# 2. RECUPERA COLORI AVANZATI (DINAMICI)
+	# Controlliamo se la maglia attuale corrisponde a quella di casa nel DB
+	var is_home_wearing_home = _check_is_default_home_kit(home_id, h_kit)
+	var is_away_wearing_home = _check_is_default_home_kit(away_id, a_kit)
 	
-	print("🎨 Colori Casa: ", cols_home)
-	print("🎨 Colori Ospiti: ", cols_away)
+	# Passiamo il risultato booleano corretto invece di true/false fissi
+	var cols_home = DataManager.get_team_colors_full(home_id, is_home_wearing_home, h_kit)
+	var cols_away = DataManager.get_team_colors_full(away_id, is_away_wearing_home, a_kit)
+	
+	print("🎨 Colori Casa (Kit Home? %s): %s" % [is_home_wearing_home, cols_home])
+	print("🎨 Colori Ospiti (Kit Home? %s): %s" % [is_away_wearing_home, cols_away])
 	
 	# 3. Spawna le pedine passando i colori
 	_spawn_team(home_roster, true, cols_home)
@@ -62,25 +66,21 @@ func setup_field(home_id: int, away_id: int, h_kit: String, a_kit: String):
 
 func _spawn_team(roster_data: Array, is_home: bool, colors: Dictionary):
 	for player_data in roster_data:
-		# Gestione Ruolo (gestisce sia 'Position' che 'Role')
+		# Gestione Ruolo
 		var role = player_data.get("Position", player_data.get("Role", "A"))
-		
 		var container = _get_target_container(is_home, role)
 		
 		if container:
 			var dot = player_dot_scene.instantiate()
 			container.add_child(dot)
 			
-			# --- SETUP PEDINA (COLORI E DATI) ---
+			# --- SETUP PEDINA ---
 			if dot.has_method("setup"):
-				# Passiamo Primario e Secondario estratti dal DB
 				dot.setup(player_data, colors["primary"], colors["secondary"])
 			
-			# Salviamo il riferimento per l'evidenziazione del turno
+			# Salviamo il riferimento
 			var pid = int(player_data.get("PlayerID"))
 			spawned_players[pid] = dot
-		else:
-			print("⚠️ Container non trovato per ruolo: ", role)
 
 func _get_target_container(is_home: bool, role: String) -> BoxContainer:
 	if is_home:
@@ -105,14 +105,29 @@ func _clear_field():
 			for child in c.get_children(): 
 				child.queue_free()
 
-# --- NUOVO: Funzione chiamata dal TurnManager per evidenziare chi gioca ---
 func highlight_active_player(player_id: int):
-	# 1. Spegni tutti
 	for pid in spawned_players:
 		if is_instance_valid(spawned_players[pid]):
 			spawned_players[pid].highlight(false)
 	
-	# 2. Accendi quello giusto
 	if spawned_players.has(player_id):
 		if is_instance_valid(spawned_players[player_id]):
 			spawned_players[player_id].highlight(true)
+
+# --- NUOVA FUNZIONE DI CONTROLLO ---
+func _check_is_default_home_kit(team_id: int, current_path: String) -> bool:
+	var team_data = DataManager.get_fantasy_team_data(team_id)
+	if team_data:
+		var default_home = team_data.get("HomeKitPath", "")
+		# Se il percorso attuale coincide con quello di casa nel DB, ritorna true
+		if current_path == default_home: return true
+	return false
+
+func update_player_vote(player_id: int, vote_value: float):
+	# Controlliamo se abbiamo generato questo giocatore
+	if spawned_players.has(player_id):
+		var player_node = spawned_players[player_id]
+		
+		# Se il nodo è valido e ha la funzione che abbiamo creato prima
+		if is_instance_valid(player_node) and player_node.has_method("show_vote_result"):
+			player_node.show_vote_result(vote_value)

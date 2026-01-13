@@ -1,0 +1,307 @@
+[gd_scene load_steps=14 format=3 uid="uid://cvmonogf3rim7"]
+
+[ext_resource type="Texture2D" uid="uid://rca02301vtkq" path="res://Images/Logos/Fantasy/FoxHoundSGF.png" id="1_2yvwf"]
+[ext_resource type="Script" uid="uid://d3jjdycbyttk8" path="res://Scripts/FantasyScoreboard.gd" id="1_fp0jg"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="1_jgk42"]
+[ext_resource type="Texture2D" uid="uid://8axf37f345ov" path="res://Images/Logos/Fantasy/RBE.png" id="4_fp0jg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfvnj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fp0jg"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42yok"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8mjm"]
+bg_color = Color(0, 0.19607843, 0.627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0mv8"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6hv16"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2urkx"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yvwf"]
+bg_color = Color(0, 0.19607843, 0.627451, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ny3n"]
+draw_center = false
+border_color = Color(1, 1, 1, 1)
+
+[node name="FantasyScoreboard" type="Control"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 3
+anchors_preset = 0
+size_flags_vertical = 4
+script = ExtResource("1_fp0jg")
+
+[node name="RowsTemplate" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -30.0
+offset_right = 200.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Points" type="PanelContainer" parent="RowsTemplate"]
+z_index = 1
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_gfvnj")
+
+[node name="ScoreDivisor" type="HBoxContainer" parent="RowsTemplate/Points"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HomePoints" type="Label" parent="RowsTemplate/Points/ScoreDivisor"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.19607843, 0.627451, 1)
+theme_override_fonts/font = ExtResource("1_jgk42")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fp0jg")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AwayPoints" type="Label" parent="RowsTemplate/Points/ScoreDivisor"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0.19607843, 0.627451, 1)
+theme_override_fonts/font = ExtResource("1_jgk42")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_42yok")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreboardTemplate" type="HBoxContainer" parent="RowsTemplate"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HomeTeam" type="Control" parent="RowsTemplate/ScoreboardTemplate"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Background" type="Panel" parent="RowsTemplate/ScoreboardTemplate/HomeTeam"]
+clip_contents = true
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 40.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k8mjm")
+
+[node name="HomeColumn" type="HBoxContainer" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background"]
+custom_minimum_size = Vector2(130, 30)
+layout_mode = 1
+offset_right = 140.0
+offset_bottom = 80.0
+theme_override_constants/separation = 0
+
+[node name="HomeName" type="Label" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background/HomeColumn"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_jgk42")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_k0mv8")
+text = "ABC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HomeLogoContainer" type="Control" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background/HomeColumn"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="HomeLogo" type="TextureRect" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background/HomeColumn/HomeLogoContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_2yvwf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TeamColors" type="HBoxContainer" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background"]
+custom_minimum_size = Vector2(150, 5)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -5.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="FirstColorHome" type="ColorRect" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background/TeamColors"]
+custom_minimum_size = Vector2(75, 5)
+layout_mode = 2
+
+[node name="SecondColorHome" type="ColorRect" parent="RowsTemplate/ScoreboardTemplate/HomeTeam/Background/TeamColors"]
+custom_minimum_size = Vector2(75, 5)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Score" type="PanelContainer" parent="RowsTemplate/ScoreboardTemplate"]
+z_index = 1
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_6hv16")
+
+[node name="ScoreDivisor" type="HBoxContainer" parent="RowsTemplate/ScoreboardTemplate/Score"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HomeGoals" type="Label" parent="RowsTemplate/ScoreboardTemplate/Score/ScoreDivisor"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.19607843, 0.627451, 1)
+theme_override_fonts/font = ExtResource("1_jgk42")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_2urkx")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AwayGoals" type="Label" parent="RowsTemplate/ScoreboardTemplate/Score/ScoreDivisor"]
+custom_minimum_size = Vector2(50, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0.19607843, 0.627451, 1)
+theme_override_fonts/font = ExtResource("1_jgk42")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_2urkx")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AwayTeam" type="Control" parent="RowsTemplate/ScoreboardTemplate"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Background" type="Panel" parent="RowsTemplate/ScoreboardTemplate/AwayTeam"]
+clip_contents = true
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.0
+offset_right = 150.0
+offset_bottom = 15.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2yvwf")
+
+[node name="AwayColumn" type="HBoxContainer" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background"]
+custom_minimum_size = Vector2(130, 30)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="AwayLogoContainer" type="Control" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background/AwayColumn"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="AwayLogo" type="TextureRect" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background/AwayColumn/AwayLogoContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 60.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_fp0jg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="AwayName" type="Label" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background/AwayColumn"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_jgk42")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ny3n")
+text = "ABC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TeamColors" type="HBoxContainer" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background"]
+custom_minimum_size = Vector2(150, 5)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -5.0
+offset_right = 75.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="FirstColorAway" type="ColorRect" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background/TeamColors"]
+custom_minimum_size = Vector2(75, 5)
+layout_mode = 2
+
+[node name="SecondColorAway" type="ColorRect" parent="RowsTemplate/ScoreboardTemplate/AwayTeam/Background/TeamColors"]
+custom_minimum_size = Vector2(75, 5)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
