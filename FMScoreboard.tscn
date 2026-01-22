@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2x0grjo38d05"]
+
+[ext_resource type="Texture2D" uid="uid://de4s303po5wfd" path="res://Images/Scoreboard/FantasyMode.png" id="1_27pvg"]
+[ext_resource type="Texture2D" uid="uid://djqhe28dqn8tg" path="res://Images/Logos/Leagues/FantasyMode.png" id="2_27pvg"]
+[ext_resource type="FontFile" uid="uid://cuq8gh0yo4t3c" path="res://Fonts/Montserrat-SemiBold.ttf" id="3_1jx1i"]
+[ext_resource type="Texture2D" uid="uid://rca02301vtkq" path="res://Images/Logos/Fantasy/FoxHoundSGF.png" id="3_meh1j"]
+[ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="4_meh1j"]
+[ext_resource type="Texture2D" uid="uid://8axf37f345ov" path="res://Images/Logos/Fantasy/RBE.png" id="6_eui7p"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_27pvg"]
+color = Color(0, 0.19607843, 0.627451, 1)
+vertical = true
+
+[node name="ScoreboardFM" type="Control"]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 100.0
+
+[node name="ScoreboardBase" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_27pvg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FantasyModeLogo" type="TextureRect" parent="ScoreboardBase"]
+modulate = Color(0, 0.19607843, 0.627451, 1)
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 17.5
+offset_top = -35.0
+offset_right = 87.5
+offset_bottom = 35.0
+grow_vertical = 2
+texture = ExtResource("2_27pvg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ScoreboardTemplate" type="HBoxContainer" parent="ScoreboardBase"]
+custom_minimum_size = Vector2(500, 70)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -505.0
+offset_top = -35.0
+offset_right = -5.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HomeTeam" type="HBoxContainer" parent="ScoreboardBase/ScoreboardTemplate"]
+clip_contents = true
+custom_minimum_size = Vector2(250, 70)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TeamLogo" type="TextureRect" parent="ScoreboardBase/ScoreboardTemplate/HomeTeam"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_meh1j")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TeamName" type="Label" parent="ScoreboardBase/ScoreboardTemplate/HomeTeam"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_fonts/font = ExtResource("3_1jx1i")
+theme_override_font_sizes/font_size = 35
+text = "ABC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoalsScored" type="Label" parent="ScoreboardBase/ScoreboardTemplate/HomeTeam"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0, 0.19607843, 0.627451, 1)
+theme_override_fonts/font = ExtResource("4_meh1j")
+theme_override_font_sizes/font_size = 55
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="VSeparator" parent="ScoreboardBase/ScoreboardTemplate"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_27pvg")
+
+[node name="AwayTeam" type="HBoxContainer" parent="ScoreboardBase/ScoreboardTemplate"]
+clip_contents = true
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GoalsScored" type="Label" parent="ScoreboardBase/ScoreboardTemplate/AwayTeam"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.19607843, 0.627451, 1)
+theme_override_fonts/font = ExtResource("4_meh1j")
+theme_override_font_sizes/font_size = 55
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TeamName" type="Label" parent="ScoreboardBase/ScoreboardTemplate/AwayTeam"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_fonts/font = ExtResource("3_1jx1i")
+theme_override_font_sizes/font_size = 35
+text = "ABC"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TeamLogo" type="TextureRect" parent="ScoreboardBase/ScoreboardTemplate/AwayTeam"]
+custom_minimum_size = Vector2(100, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_eui7p")
+expand_mode = 5
+stretch_mode = 5

@@ -49,8 +49,8 @@ func setup(player_data: Dictionary, kit_path: String, team_colors: Dictionary = 
 	var diff = float(player_data.get("DifficultyMultiplier", 0.0))
 	if modifier_label:
 		# Formatta stringa: es. "Difficoltà: +0.5" o "Difficoltà: -1.0"
-		var sign = "+" if diff > 0 else ""
-		modifier_label.text = "Difficoltà: %s%.1f" % [sign, diff]
+		var Votesign = "+" if diff > 0 else ""
+		modifier_label.text = "Difficoltà: %s%.1f" % [Votesign, diff]
 		
 # STEP 1: RIVELA VOTO (Mandalo al Nametag)
 func reveal_base_vote(vote: float):

@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3lxxt3gjg8je"]
+
+[ext_resource type="Texture2D" uid="uid://bn1opu07vjqt4" path="res://Images/FantasyMatchBG.jpg" id="1_v3kph"]
+[ext_resource type="PackedScene" uid="uid://bsneocu75f3i2" path="res://Scenes/Prefabs/FantasyField.tscn" id="2_v3kph"]
+[ext_resource type="PackedScene" uid="uid://b2ofa4jrp1c0b" path="res://Scenes/Prefabs/ActivePlayerCard.tscn" id="3_uhpfh"]
+[ext_resource type="Script" uid="uid://buy8vk5jv3tf2" path="res://Scripts/TurnManager.gd" id="4_grmx4"]
+
+[node name="MatchFantasy" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MatchBG" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("1_v3kph")
+
+[node name="DarkOverlay" type="ColorRect" parent="PanelContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.3137255)
+
+[node name="MatchLayout" type="HBoxContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(1600, 900)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="HomeTeam" type="VBoxContainer" parent="PanelContainer/MatchLayout"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ActivePlayerCard" parent="PanelContainer/MatchLayout/HomeTeam" instance=ExtResource("3_uhpfh")]
+layout_mode = 2
+
+[node name="MatchInfo" type="VBoxContainer" parent="PanelContainer/MatchLayout"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScoreboardPlaceholder" type="ColorRect" parent="PanelContainer/MatchLayout/MatchInfo"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="FantasyField" parent="PanelContainer/MatchLayout/MatchInfo" instance=ExtResource("2_v3kph")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AwayTeam" type="VBoxContainer" parent="PanelContainer/MatchLayout"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ActivePlayerCard" parent="PanelContainer/MatchLayout/AwayTeam" instance=ExtResource("3_uhpfh")]
+layout_mode = 2
+
+[node name="TurnManager" type="Node" parent="." node_paths=PackedStringArray("active_card_home", "active_card_away")]
+script = ExtResource("4_grmx4")
+active_card_home = NodePath("../PanelContainer/MatchLayout/HomeTeam/ActivePlayerCard")
+active_card_away = NodePath("../PanelContainer/MatchLayout/AwayTeam/ActivePlayerCard")

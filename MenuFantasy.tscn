@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1ry54gf24nj0"]
+[gd_scene load_steps=9 format=3 uid="uid://b1ry54gf24nj0"]
 
 [ext_resource type="Theme" uid="uid://cq35nlv8gaq3v" path="res://Themes/Menu.tres" id="1_5paop"]
 [ext_resource type="Texture2D" uid="uid://cn2dvo6b8rgj0" path="res://Images/FantasyFriendly.jpg" id="1_okvdk"]
 [ext_resource type="Script" uid="uid://bqb71yky5pvue" path="res://Scripts/MenuFantasy.gd" id="2_duoxo"]
-[ext_resource type="Texture2D" uid="uid://bggwcnewfo4xw" path="res://Images/Fantasy Mode.png" id="4_emkth"]
+[ext_resource type="FontFile" uid="uid://cuq8gh0yo4t3c" path="res://Fonts/Montserrat-SemiBold.ttf" id="4_o6ufk"]
 [ext_resource type="Script" uid="uid://dgxv0l3x601mo" path="res://Scripts/FocusBold.gd" id="4_xcgmv"]
+[ext_resource type="Texture2D" uid="uid://djqhe28dqn8tg" path="res://Images/Logos/Leagues/FantasyMode.png" id="5_o6ufk"]
 [ext_resource type="FontFile" uid="uid://dqg30epk18kc2" path="res://Fonts/Montserrat-Medium.ttf" id="5_qetqh"]
 [ext_resource type="FontFile" uid="uid://hvqx2rd6u1k3" path="res://Fonts/Montserrat-ExtraBold.ttf" id="6_emkth"]
 
@@ -36,12 +37,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -282.0
-offset_right = 282.0
-offset_bottom = 69.0
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 100.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_o6ufk")
 theme_override_font_sizes/font_size = 50
-text = "Modalità FANTACALCIO"
+text = "Fantasy Mode"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -62,7 +64,7 @@ theme_override_constants/separation = 0
 texture_filter = 6
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture = ExtResource("4_emkth")
+texture = ExtResource("5_o6ufk")
 expand_mode = 3
 stretch_mode = 5
 

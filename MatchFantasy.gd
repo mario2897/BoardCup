@@ -97,9 +97,13 @@ func update_scoreboard(h, a):
 	if scoreboard: scoreboard.update_scores(h, a)
 
 func update_player_vote_ui(pid, vote):
-	if _nametag_map.has(pid):
-		# _nametag_map[pid].update_score(vote) # Se hai il metodo
-		pass
+	var pid_int = int(pid)
+	# Controlla se abbiamo la targhetta di questo giocatore nella mappa
+	if _nametag_map.has(pid_int):
+		var nametag = _nametag_map[pid_int]
+		# Chiama la funzione 'show_vote_result' che abbiamo aggiunto al Nametag
+		if nametag and nametag.has_method("show_vote_result"):
+			nametag.show_vote_result(vote)
 
 # --- HELPERS ---
 func _check_is_default_home_kit(tid, path):

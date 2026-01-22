@@ -79,12 +79,8 @@ func _create_enriched_queue(roster_h: Array, roster_a: Array) -> Array:
 			var opp_data = DataManager.get_team_data(opp_id)
 			p["RealOpponentName"] = opp_data.get("Name", "Avversario")
 			p["RealOpponentLogoPath"] = opp_data.get("LogoPath", "")
-		else:
-			p["RealOpponentName"] = "RIPOSO"
-			p["RealOpponentLogoPath"] = ""
 
 		# 2. Percentuali Successo (Dal DB)
-		var pid = int(p.get("PlayerID"))
 		# (Inserisci qui la tua query per SuccessRate se la usi)
 		p["SuccessRate"] = 50.0 
 		
@@ -161,13 +157,18 @@ func _step_1_calculate_base():
 	_temp_base_vote = snapped(base + (float(d1 + d2) / 4.0), 0.5)
 	
 	var match_ui = get_parent()
-	if match_ui: match_ui.ui_show_base_vote(_temp_base_vote)
+	if match_ui: 
+		# 1. Aggiorna Carta Grande
+		match_ui.ui_show_base_vote(_temp_base_vote)
+		# 2. Aggiorna la Lista Laterale (QUESTO MANCAVA!)
+		if match_ui.has_method("update_player_vote_ui"):
+			match_ui.update_player_vote_ui(current_player_data["PlayerID"], _temp_base_vote)
 	
-	# --- AGGIUNTA: Aggiorna anche la lista/campo ---
-	var field = get_tree().root.find_child("FantasyField", true, false)
+	# 3. Aggiorna il Campo (Pedine)
+	# NOTA: Assicurati che il nome del nodo nella scena sia "FantasyField" o "FantasyFieldManager"
+	var field = get_tree().root.find_child("FantasyField", true, false) 
 	if field:
 		field.update_player_vote(int(current_player_data["PlayerID"]), _temp_base_vote)
-	# -----------------------------------------------
 
 	current_state = State.WAIT_FINAL_VOTE
 
